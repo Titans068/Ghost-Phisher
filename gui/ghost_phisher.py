@@ -20,7 +20,7 @@ from .ghost_ui import *
 from .settings import *
 from .tip_settings import tip_settings
 from .whats_new import whats_new_window
-import _thread
+import _thread,ctypes
 
 
 cwd = os.getcwd()  # This will be used as working directory after HTTP is launch
@@ -431,10 +431,18 @@ class Ghost_phisher(QMainWindow, Ui_ghost_phisher):  # Main class for all GUI fu
     #########################################################################
 
     def check_root_privileges(self):
-        if (os.getenv('LOGNAME', 'none').lower() != 'root'):
+        """ if (os.getenv('LOGNAME', 'none').lower() != 'root'):
             QMessageBox.warning(self, "Insufficient Privilege", "Ghost Phisher requires root privileges to function properly,\
-            please run as root")
-            sys.exit(1)
+            please run as root") """
+        try:
+            is_admin = os.getuid() == 0
+        except AttributeError:
+            is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+        finally:
+            if not is_admin:
+                QMessageBox.warning(self, "Insufficient Privilege",
+                 "Ghost Phisher requires root privileges to function properly, please run as root")
+                sys.exit(1)
 
     def update_window(self):
         self.update_function.display_update_version()
