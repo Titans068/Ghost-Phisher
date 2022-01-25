@@ -1,0 +1,81 @@
+#######################################################
+#           GHOST PHISHER TIPS                        #
+#######################################################
+import os
+
+from . import settings
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+cwd = os.getcwd()
+
+
+class Ui_tip(object):
+    def setupUi(self, tip):
+        tip.setObjectName("tip")
+        tip.resize(499, 131)
+        self.horizontalLayout = QtWidgets.QHBoxLayout(tip)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.label = QtWidgets.QLabel(tip)
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap("%s/gui/images/tip.png"%(os.getcwd())))
+        self.label.setObjectName("label")
+        self.horizontalLayout_2.addWidget(self.label)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label_2 = QtWidgets.QLabel(tip)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.label_3 = QtWidgets.QLabel(tip)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout.addWidget(self.label_3)
+        self.label_4 = QtWidgets.QLabel(tip)
+        font = QtGui.QFont()
+        font.setUnderline(True)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout.addWidget(self.label_4)
+        self.label_5 = QtWidgets.QLabel(tip)
+        self.label_5.setObjectName("label_5")
+        self.verticalLayout.addWidget(self.label_5)
+        spacerItem = QtWidgets.QSpacerItem(20, 8, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.checkBox = QtWidgets.QCheckBox(tip)
+        self.checkBox.setObjectName("checkBox")
+        self.verticalLayout_2.addWidget(self.checkBox)
+        self.horizontalLayout_2.addLayout(self.verticalLayout_2)
+        self.horizontalLayout.addLayout(self.horizontalLayout_2)
+
+        self.retranslateUi(tip)
+        QtCore.QMetaObject.connectSlotsByName(tip)
+
+    def retranslateUi(self, tip):
+        tip.setWindowTitle(QtCore.QCoreApplication.translate("tip", "Ghost Phisher Tips", None))
+        self.label_2.setText(QtCore.QCoreApplication.translate("tip", "Press the F2 Key from the keyboard to get font settings, if you have  problems with ", None))
+        self.label_3.setText(QtCore.QCoreApplication.translate("tip", "understanding how to use this application then visit:", None))
+        self.label_4.setText(QtCore.QCoreApplication.translate("tip", "<a href=\"http://code.google.com/p/ghost-phisher/\">http://code.google.com/p/ghost-phisher</a> ", None))
+        self.label_5.setText(QtCore.QCoreApplication.translate("tip", "for a video tutorial on how to use the application.", None))
+        self.checkBox.setText(QtCore.QCoreApplication.translate("tip", "Dont show this message again", None))
+
+
+
+class tip_settings(QtWidgets.QDialog,Ui_tip):
+    def __init__(self):
+        QtWidgets.QDialog.__init__(self)
+        self.setupUi(self)
+        self.retranslateUi(self)
+
+        self.settings_object = settings.Ghost_settings()
+
+        self.checkBox.clicked.connect(self.set_tip)
+
+    def set_tip(self):
+        if self.checkBox.isChecked():
+            self.settings_object.create_settings('tip-settings',"0")
+        else:
+            self.settings_object.create_settings('tip-settings',"1")

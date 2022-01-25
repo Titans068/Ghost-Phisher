@@ -1,0 +1,16 @@
+**  pyqt4_to_pyqt5.log  Saturday 15. January 2022 22:24  **
+Args: ['/usr/local/bin/pyqt4topyqt5', '/home/admin/Desktop/nu', '-o', '/home/admin/Desktop/nu2']
+
+Beginning into: /home/admin/Desktop/nu2
+
+**  pyqt4_to_pyqt5.log  Saturday 15. January 2022 22:25  **
+Args: ['/usr/local/bin/pyqt4topyqt5', '/home/admin/Desktop/old', '-o', '/home/admin/Desktop/new']
+
+**  pyqt4_to_pyqt5.log  Saturday 15. January 2022 22:25  **
+Args: ['/usr/local/bin/pyqt4topyqt5', '/home/admin/Desktop/old', '-o', '/home/admin/Desktop/new']
+
+Beginning into: /home/admin/Desktop/new
+
+Processing file: `/home/admin/Desktop/new/ghost_phisher.py`
+  File updated.
+
